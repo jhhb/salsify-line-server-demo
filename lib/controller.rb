@@ -22,7 +22,7 @@ module App
 
     # Endpoint for debugging purposes
     get '/line_count' do
-      settings.file_line_count.to_s
+      file_length.to_s
     end
 
     get '/lines/:index' do
