@@ -21,7 +21,7 @@ module App
     end
 
     # Endpoint for debugging purposes
-    get '/line_count/:count' do
+    get '/line_count' do
       settings.file_line_count.to_s
     end
 
