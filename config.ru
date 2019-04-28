@@ -1,4 +1,4 @@
 # frozen_string_literal: true
-require_relative 'lib/server'
+require_relative 'lib/controller'
 
-run Server::App
+run App::Controller

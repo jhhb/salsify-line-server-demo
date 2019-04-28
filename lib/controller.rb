@@ -4,10 +4,8 @@ require 'redis'
 
 require_relative 'my_model'
 
-module Server
-  class App < Sinatra::Base
-    FILENAME = 'abc.txt'
-
+module App
+  class Controller < Sinatra::Base
     get '/keys' do
       redis.keys.map { |k| { key: k, value: redis.get(k) } }.to_json
     end
