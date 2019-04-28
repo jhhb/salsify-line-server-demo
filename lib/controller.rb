@@ -2,7 +2,7 @@
 require 'sinatra/base'
 require 'redis'
 
-require_relative 'my_model'
+require_relative 'request_manager'
 
 module App
   class Controller < Sinatra::Base
@@ -26,21 +26,33 @@ module App
     end
 
     get '/lines/:index' do
-      if params[:index].to_i > file_length
+      if index_out_of_range?
         [
           413,
           "You requested a file index past the file length of #{file_length}"
         ]
       else
-        'Valid'
+        RequestManager.new(file_path, file_length, index).manage
       end
     end
 
     private
 
+    def index_out_of_range?
+      index > file_length
+    end
+
     # @return [Fixnum] number of lines in the file
     def file_length
       settings.file_length
+    end
+
+    def file_path
+      settings.file_path
+    end
+
+    def index
+      params[:index].to_i
     end
 
     def redis
