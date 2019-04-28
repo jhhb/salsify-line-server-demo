@@ -29,7 +29,7 @@ module App
       if index_out_of_range?
         [
           413,
-          "You requested a file index past the file length of #{file_length}"
+          "Requested index is outside the valid range of 0 - #{max_valid_index}"
         ]
       else
         RequestManager.new(file_path, file_length, index).manage
@@ -39,7 +39,11 @@ module App
     private
 
     def index_out_of_range?
-      index > file_length
+      index > max_valid_index
+    end
+
+    def max_valid_index
+      file_length - 1
     end
 
     # @return [Fixnum] number of lines in the file
