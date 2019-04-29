@@ -28,6 +28,9 @@ class RequestManager
 
   private
 
+  # Attempt to acquire a lock unique for the filename and partition size.
+  # If we do, write the chunked file; this methods attempts to prevent
+  # writing the same chunked file while a Thread is already writing it.
   def maybe_write_partition_file
     redis_manager = RedisManager.new
     if redis_manager.lock_on_key?(partition_manager.partition_filepath)

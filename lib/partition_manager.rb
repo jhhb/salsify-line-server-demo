@@ -1,4 +1,8 @@
 # frozen_string_literal: true
+# The purpose of the PartitionManager is to provide an interface for
+# chunking the input file into smaller subfiles. It does this by determining
+# partitions and partition sizes and offsets for the given set of parameters
+# frozen_string_literal: true
 class PartitionManager
   attr_reader :partition_size
 
@@ -17,6 +21,10 @@ class PartitionManager
     partition_filepath.split('/')[0]
   end
 
+  # @return [String]
+  # return a string that is unique per partition_size setting and file_name.
+  # This makes it so that we can alter either of the two and correctly
+  # maintain references to any chunked files
   def partition_filepath
     "partition_file_max_length_#{partition_size}_#{input_filename}/#{partition_num_for_index}.txt"
   end
