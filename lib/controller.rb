@@ -19,7 +19,7 @@ module App
           "Requested index is outside the valid range of 0 - #{max_valid_index}"
         ]
       else
-        RequestManager.new(file_path, file_length, index, partition_size).manage
+        RequestManager.new(file_path, index, partition_size).manage
       end
     end
 

@@ -6,13 +6,11 @@ require_relative 'partition_manager'
 require_relative 'redis_manager'
 
 # @param [String] file_path
-# @param [Fixnum] file_length TODO - delete this. not needed
 # @param [Fixnum] index
 # @param [Fixnum] partition_size
 class RequestManager
-  def initialize(file_path, file_length, index, partition_size)
+  def initialize(file_path, index, partition_size)
     @file_path   = file_path
-    @file_length = file_length
     @index       = index
     @partition_manager = PartitionManager.new(index, partition_size, file_path)
   end
@@ -41,7 +39,6 @@ class RequestManager
   end
 
   attr_reader :file_path
-  attr_reader :file_length
   attr_reader :index
   attr_reader :partition_manager
 end
