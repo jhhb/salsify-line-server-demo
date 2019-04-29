@@ -6,7 +6,9 @@
 class PartitionManager
   attr_reader :partition_size
 
-  # @param
+  # @param [Fixnum] requested_index
+  # @param [Fixnum] partition_size
+  # @param [String] input_filename
   def initialize(requested_index, partition_size, input_filename)
     @requested_index = requested_index
     @partition_size = partition_size
