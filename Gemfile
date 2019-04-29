@@ -3,7 +3,6 @@ source 'https://rubygems.org/'
 
 gem 'pry'
 gem 'rb-readline'
-gem 'rspec'
 gem 'sinatra'
 gem 'redis', '~> 4.1.0'
 gem 'passenger', '~> 5.0.0', require: 'phusion_passenger/rack_handler'

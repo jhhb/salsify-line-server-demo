@@ -12,20 +12,6 @@ module App
       set :partition_file_max_length, ENV['PARTITION_FILE_MAX_LENGTH'].to_i
     end
 
-    get '/keys' do
-      redis.keys.map { |k| { key: k, value: redis.get(k) } }.to_json
-    end
-
-    post '/keys/:key' do
-      key = params['key']
-      redis.set(key, "value-for-#{key}")
-    end
-
-    # Endpoint for debugging purposes
-    get '/line_count' do
-      file_length.to_s
-    end
-
     get '/lines/:index' do
       if index_out_of_range?
         [
