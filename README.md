@@ -2,15 +2,12 @@
 * `rvm`
 * `ruby` at `2.3.7` (via `rvm`)
 * `redis` >= 4.0
+* `bundler` at `2.0.1`
 
 ### Running
-* `cd sinatra-passenger-rspec-redis-boilerplate/`
-* `bundle install`
-* `sh run.sh`
-
-#### Running tests
-* `cd sinatra-passenger-rspec-redis-boilerplate/`
-* `bundle exec rspec spec`
+* `cd salsify-line-server-demo`
+* `bash build.sh`
+* `bash run.sh`
 
 ### POSTing
 `curl -X  POST http://localhost:3000/keys/new_key_name`

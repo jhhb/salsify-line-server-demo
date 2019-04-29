@@ -1,7 +1,7 @@
 #!/bin/bash
-# TODO - this needs to include installing redis
-\curl -sSL https://get.rvm.io | bash -s stable --ruby
-rvm install 2.3.7
-rvm use 2.3.7
+rvm install ruby-2.3.7
+source ~/.rvm/scripts/rvm
+rvm use ruby-2.3.7
+gem install bundler --version 2.0.1
+brew install redis
 bundle install
-
