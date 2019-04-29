@@ -9,6 +9,7 @@ module App
     configure do
       set :file_path, ENV['FILE_PATH']
       set :file_length, ENV['FILE_LINE_COUNT'].to_i
+      set :partition_file_max_length, ENV['PARTITION_FILE_MAX_LENGTH'].to_i
     end
 
     get '/keys' do
@@ -32,7 +33,7 @@ module App
           "Requested index is outside the valid range of 0 - #{max_valid_index}"
         ]
       else
-        RequestManager.new(file_path, file_length, index).manage
+        RequestManager.new(file_path, file_length, index, partition_size).manage
       end
     end
 
@@ -40,6 +41,10 @@ module App
 
     def index_out_of_range?
       index > max_valid_index
+    end
+
+    def partition_size
+      settings.partition_file_max_length
     end
 
     def max_valid_index
@@ -57,10 +62,6 @@ module App
 
     def index
       params[:index].to_i
-    end
-
-    def redis
-      @redis ||= Redis.new(host: '127.0.0.1', port: 6379, db: 1)
     end
   end
 end

@@ -12,6 +12,16 @@ class FileReader
     end
   end
 
+  def read_lines(start_idx, end_idx)
+    lines = []
+    count = 0
+    File.foreach(filename, encoding: 'ascii') do |l|
+      lines.push(l) if count >= start_idx && count < end_idx
+      count += 1
+    end
+    lines
+  end
+
   private
 
   attr_reader :filename
